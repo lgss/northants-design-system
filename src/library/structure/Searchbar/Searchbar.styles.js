@@ -141,6 +141,57 @@ export const ButtonText = styled.span`
   clip: rect(0 0 0 0) !important;
   clip-path: inset(50%) !important;
   border: 0 !important;
-  white-space: nowrap !important;
+  white-space: nowrap !important; 
 `
 
+export const ClearButton = styled.button`
+ position: absolute;
+  top: 0;
+  right: 50px;
+  cursor: pointer;
+  margin: 0;
+  padding: ${props => props.theme.theme_vars.spacingSizes.small} 12px;
+  background: transparent;
+  color: ${props => props.theme.theme_vars.colours.white};
+  border: 1px solid transparent;
+  
+  width: 50px;
+  text-align: center;
+  height: 100%;
+  transform: scaleY(-.95);
+
+  &:hover {
+    background: ${props => props.theme.theme_vars.colours.grey_light};
+    svg {
+      path {
+        fill: ${props => props.theme.theme_vars.colours.active};
+      }
+    }
+  }
+
+
+  .is-large & { 
+    padding: 15px;
+    /* padding: 10px 15px;
+    padding-top: 12px; */
+    width: 70px;
+
+    right: 70px;
+  }
+
+  &:focus {
+    outline: none;
+    background: ${props => props.theme.theme_vars.colours.focus};
+
+    svg {
+      path{
+        fill: ${props => props.theme.theme_vars.colours.black};
+      }
+    }
+  }
+
+  
+  /* &:active {
+    transform: translateY(1px);
+  } */
+`
