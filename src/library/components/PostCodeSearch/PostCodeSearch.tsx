@@ -34,6 +34,7 @@ const PostCodeSearch: React.FC<PostCodeSearchProps> = ({
     const [currentPostcode, setCurrentPostcode] = useState("");
     const [isMultiple, setIsMultiple] = useState(false);
     const [addressArray, setAddressArray] = useState([]);
+    const headerText = themeContext.theme_vars.cardinal_name === "north" ? "nnc" : "wnc";
 
     const defaultArray = { 
       numOfSovereign: 0,
@@ -66,8 +67,8 @@ const PostCodeSearch: React.FC<PostCodeSearchProps> = ({
     const checkPostcode = async (postcode) => {
       axios({
         method: "GET",
-        url: `https://api.westnorthants.digital/check-postcode/${postcode.replace(/ /g,'')}`
-        // headers: { 'x-api-key': 'kBexTqkLpj6ZOkGUNguti58JijxQcGvf9tLqBWWh' }
+        url: `https://api.westnorthants.digital/check-postcode/${postcode.replace(/ /g,'')}`,
+        headers: { 'Council': headerText }
       })
       .then((response) => {
         setIsLoading(false);
@@ -79,6 +80,7 @@ const PostCodeSearch: React.FC<PostCodeSearchProps> = ({
       })
       .catch((error) => {
         handleError(true);
+        setIsLoading(false);
         console.log(error)
       })
     }
