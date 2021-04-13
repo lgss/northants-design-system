@@ -1,27 +1,65 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NewsArticleFilterAccordionProps } from "./NewsArticleFilterAccordion.types";
 import * as Styles from "./NewsArticleFilterAccordion.styles";
 import Accordion from "../../slices/Accordion/Accordion";
 import RemoveAllFilters from "../../components/RemoveAllFilters/RemoveAllFilters";
-import Heading from "../../components/Heading/Heading";
+import { NewsArticleFilterFields } from "./NewsArticleFilterAccordionText"
 
-import {countParams} from './../../helpers/url-helpers.js';
+import {countParams, getParamValue, getDropDownValues, getCheckboxValues} from './../../helpers/url-helpers.js';
 
 const NewsArticleFilterAccordion: React.FC<NewsArticleFilterAccordionProps> = ({ sections }) => { 
 
-const count = countParams(['searchTerm', 'services', 'articleType', 'sortBy']);
+const [count, setCount] = useState(0);
+const [searchValue, setSearchValue] = useState([]);
+const [servicesValue, setServices] = useState([]);
+const [articleTypeValue, setArticleTypes] = useState([]);
+
+
+useEffect(() => {
+    setCount(countParams(NewsArticleFilterFields.removeFiltersList));
+    setSearchValue(getParamValue(NewsArticleFilterFields.search.queryParamKey));
+    setServices(getDropDownValues(NewsArticleFilterFields.services.queryParamKey));
+    setArticleTypes(getCheckboxValues(NewsArticleFilterFields.articleType.queryParamKey));
+}, []);   
 
 const [isFullScreen, setFullScreen] = useState(false)
     
 const showFullscreenFilters = (e) => {
     setFullScreen(true)
+    document.body.style.overflow = 'hidden';
 }
 
 
 const hideFullscreenFilters = (e) => {
     setFullScreen(false)
+    document.body.style.overflow = 'visible';
 }
+
+// set accordions to closed by default NOR-134
+sections.map((section) => {
+    // unless the field in question is set
+    // search
+    // services
+    // article type
+
+    if(section.title === NewsArticleFilterFields.search.title && searchValue.length > 0) {
+        section.isExpanded = true;
+    }
+    else if(section.title === NewsArticleFilterFields.services.title && servicesValue.length > 0) {
+        section.isExpanded = true;
+    }
+    else if(section.title === NewsArticleFilterFields.articleType.title && articleTypeValue.length > 0) {
+        section.isExpanded = true;
+    }
+    else {
+        section.isExpanded = false 
+    }
+
+});
+
+
+
     
 return (
     <Styles.Container data-testid="NewsArticleFilterAccordion">
@@ -32,8 +70,10 @@ return (
                 <Styles.FilterHeading id="PageFiltersLabel">Search &amp; Filters</Styles.FilterHeading>
                 <Styles.ShowFiltersButton onClick={hideFullscreenFilters}>Close window</Styles.ShowFiltersButton> 
             </Styles.FilterHeader>
-            <Accordion isFilter={true} sections={sections} />
-            <RemoveAllFilters />
+            <Accordion isFilter={true} sections={sections} withReadMore={false} />
+            {count > 0 && 
+                <RemoveAllFilters count={count} />
+            }
         </Styles.Filters>
 
     </Styles.Container>

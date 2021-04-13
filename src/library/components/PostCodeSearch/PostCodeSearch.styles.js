@@ -73,6 +73,7 @@ export const PostcodeResult = styled.div`
         padding-left: 15px;
         padding-top: 10px;
         padding-bottom: 12px;
+        max-width: calc(100% - 30px);
     }
 `
 export const Line = styled.div`
@@ -107,4 +108,8 @@ export const StartAgain = styled.button`
         font-size: 1.1875rem;
         line-height: 1.45;
     }
+`
+
+export const LoadingContainer = styled.div`
+    padding-left: 30px;
 `

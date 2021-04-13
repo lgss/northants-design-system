@@ -35,6 +35,9 @@ export const PagelinkBlank = styled.div`
     margin-bottom: 31px;
   }
 `
+export const ServiceIconLink = styled.a`
+  
+`
 export const PagelinkIconContainer = styled.div`
   width: 65px;
   height: auto;
@@ -67,7 +70,7 @@ export const PagelinkBlock = styled.div`
   -ms-flex-direction: row;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: top;
   margin-bottom: 5px;
 
   @media screen and (min-width: ${props => props.theme.theme_vars.breakpoints.s}){
@@ -185,7 +188,7 @@ export const ViewMoreButtonContainer = styled.div`
 `
 
 export const ViewMoreButton = styled.button`
-  padding: 0;
+  padding: 10px 15px;
   border: none;
   background: none;
   ${props => props.theme.linkStyles}
@@ -226,7 +229,7 @@ export const HomeTitle = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     border-bottom: 1px solid ${props => props.theme.theme_vars.colours.grey_dark};
-    margin-bottom: 25px;
+    margin-bottom: 35px;
     
     h2 {
       margin-top: 30px;
@@ -236,7 +239,7 @@ export const HomeTitle = styled.div`
 
 
 export const ReorderControl = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   @media screen and (min-width: ${props => props.theme.theme_vars.breakpoints.m}){
     text-align: right;
   }

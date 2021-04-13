@@ -13,7 +13,7 @@ const ServicesLinksList: React.FC<ServicesLinksListProps> = ({
     serviceLinksArray
 }) => { 
     const themeContext = useContext(ThemeContext);
-    const [arrayOrdering, setArrayOrdering] = useState([]);
+    const [arrayOrdering, setArrayOrdering] = useState(serviceLinksArray);
     // const originalOrderedArray = serviceLinksArray;
     const orderedArray = [...serviceLinksArray].sort((a, b) => (a.title > b.title ? 1 : -1));
     const [open, setOpen] = useState(false);
@@ -30,8 +30,14 @@ const ServicesLinksList: React.FC<ServicesLinksListProps> = ({
         }
     }, [currentOrder])
 
-    const DynamicComponent = ({name}) => {
-        const DynamicIcon = serviceIcons[name];
+    const DynamicComponent = ({name, isHover = false}) => {
+        let DynamicIcon;
+        if(name === "culture") {
+            let newName = name + themeContext.cardinal_name;
+            DynamicIcon = serviceIcons[newName + (isHover ? "Hover" : "")];
+        } else {
+            DynamicIcon = serviceIcons[name + (isHover ? "Hover" : "")];
+        }
         return <DynamicIcon colourFill={themeContext.theme_vars.colours.action} />;
     }
 
@@ -45,13 +51,13 @@ const ServicesLinksList: React.FC<ServicesLinksListProps> = ({
                         {
                             orderButtons ?
                                 <>
-                                <Styles.ReorderButton onClick={() => setCurrentOrder(0)} tabIndex="-1"  className={"chosen"}>Most used</Styles.ReorderButton>
-                                <Styles.ReorderButton onClick={() => setCurrentOrder(1)}>Alphabetical</Styles.ReorderButton>
+                                <Styles.ReorderButton onClick={() => setCurrentOrder(0)} tabIndex="-1"  className={"chosen"} title="Most used selected">Most used</Styles.ReorderButton>
+                                <Styles.ReorderButton onClick={() => setCurrentOrder(1)} title="Alphabetical">Alphabetical</Styles.ReorderButton>
                                 </>
                                 :
                                 <>
-                                <Styles.ReorderButton onClick={() => setCurrentOrder(0)}>Most used</Styles.ReorderButton>
-                                <Styles.ReorderButton onClick={() => setCurrentOrder(1)} tabIndex="-1"  className={"chosen"}>Alphabetical</Styles.ReorderButton>
+                                <Styles.ReorderButton onClick={() => setCurrentOrder(0)} title="Most used">Most used</Styles.ReorderButton>
+                                <Styles.ReorderButton onClick={() => setCurrentOrder(1)} tabIndex="-1"  className={"chosen"} title="Alphabetical selected">Alphabetical</Styles.ReorderButton>
                                 </>
                             }
                     </Styles.ReorderControl>
@@ -61,12 +67,17 @@ const ServicesLinksList: React.FC<ServicesLinksListProps> = ({
                         <Styles.PagelinkBlock key={link.title}>
                             {link.iconKey && 
                                 <Styles.PagelinkIconContainer>
-                                    <Styles.PagelinkIcon className="service-icon">
-                                        <DynamicComponent name={link.iconKey} />
-                                    </Styles.PagelinkIcon>
-                                    <Styles.PagelinkIconHover className="service-icon-hover">
-                                        <DynamicComponent name={(link.iconKey + "Hover")} />
-                                    </Styles.PagelinkIconHover>
+                                    <Styles.ServiceIconLink 
+                                        href={link.url} 
+                                        title={"Go to " + link.title}
+                                    >
+                                        <Styles.PagelinkIcon className="service-icon">
+                                            <DynamicComponent name={link.iconKey} isHover={false} />
+                                        </Styles.PagelinkIcon>
+                                        <Styles.PagelinkIconHover className="service-icon-hover">
+                                            <DynamicComponent name={link.iconKey} isHover={true} />
+                                        </Styles.PagelinkIconHover>
+                                    </Styles.ServiceIconLink>
                                 </Styles.PagelinkIconContainer>
                             }
                             <Styles.PagelinkInner>

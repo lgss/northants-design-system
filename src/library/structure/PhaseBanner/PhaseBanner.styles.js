@@ -2,7 +2,7 @@ import styled from "styled-components";
 import MaxWidthContainer from '../MaxWidthContainer/MaxWidthContainer';
 
 export const Wrapper = styled.div`
-    background: ${props => props.isHome ? props.theme.theme_vars.colours.action : "transparent"};
+    background: ${props => props.isHome ? (props.theme.theme_vars.theme_name === "Memorial theme North" || props.theme.theme_vars.theme_name === "Memorial theme West" ? props.theme.theme_vars.colours.grey_dark : props.theme.theme_vars.colours.action) : "transparent"};
 `
 
 export const StyledMaxWidthContainer = styled(MaxWidthContainer)`
@@ -15,6 +15,7 @@ export const StyledMaxWidthContainer = styled(MaxWidthContainer)`
     -ms-flex-direction: row;
     flex-direction: row;
     align-items: left;
+    margin: ${props => props.isHome ? "" : "0 auto !important"};
     color: ${props => props.isHome ? props.theme.theme_vars.colours.white : props.theme.theme_vars.colours.black};
 `
 
@@ -44,13 +45,11 @@ export const Phase = styled.div`
     vertical-align: middle;
     color: ${props => props.theme.theme_vars.colours.black};
     border-radius: 4px;
-    margin-top: 7px;
 
     @media screen and (min-width: ${props => props.theme.theme_vars.breakpoints.s}){
         display: inline-block;
         float: none;
         margin-right: 10px;
-        margin-top: 0px;
         vertical-align: sub;
     }
 `

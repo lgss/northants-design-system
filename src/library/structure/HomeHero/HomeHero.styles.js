@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const Container = styled.header`
+export const Wrapper = styled.header`
+    background: ${props => props.noBackground ? "transparent" : 
+        props.theme.cardinal_name === "north" ?  (props.theme.theme_vars.colours.grey_light+"7a") : props.theme.theme_vars.colours.white};
+`
+
+export const Container = styled.div`
     font-family: ${props => props.theme.theme_vars.fontstack};
     overflow: hidden;
     background: ${props => props.theme.theme_vars.colours.action}5A;
@@ -12,6 +17,10 @@ export const Container = styled.header`
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+
+        &.loading {
+            background-image: none;
+        }
     }
     @media screen and (min-width: ${props => props.theme.theme_vars.breakpoints.s}){
         padding 60px 0;
@@ -19,7 +28,8 @@ export const Container = styled.header`
     @media screen and (min-width: calc(${props => props.theme.theme_vars.breakpoints.l} + 60px)){
         margin-right: auto;
         margin-left: auto;
-        max-width: ${props => props.theme.theme_vars.breakpoints.xl};
+        padding 90px 0;
+        max-width: 1680px;
     }
 `
 
@@ -69,6 +79,14 @@ export const LogoColoured = styled.div`
         width: 95%;
         height: auto;
     }
+    &.black_logo {
+        svg {
+            fill: black !important;
+            path {
+                fill: black !important;
+            }
+        }
+    }
 `
 
 export const Strapline = styled.p`
@@ -88,8 +106,8 @@ export const PromotedLinks = styled.div`
         flex-wrap: wrap;
         margin-top: 60px;
     }
-    @media screen and (min-width: ${props => props.theme.theme_vars.breakpoints.s}){
-
+    @media screen and (min-width: calc(${props => props.theme.theme_vars.breakpoints.l} + 60px)){
+        margin-top: 90px;
     }
 `
 

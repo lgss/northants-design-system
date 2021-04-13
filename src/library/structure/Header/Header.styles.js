@@ -73,6 +73,7 @@ export const AllServicesLink = styled.a`
     color: ${props => (props.isHomepage === "true" || props.theme.cardinal_name === "north") ? props.theme.theme_vars.colours.action : props.theme.theme_vars.colours.white};
     padding: 0 ${props => props.theme.theme_vars.spacingSizes.small};
     vertical-align: middle;
+    margin-top: -10px;
 
     &:hover {
         ${props => props.theme.linkStylesHover};
@@ -87,9 +88,14 @@ export const AllServicesLink = styled.a`
     }
 
     display: inline-block;
+    padding-bottom: 15px;
+    padding-top: 15px;
 
     @media screen and (min-width: ${props => props.theme.theme_vars.breakpoints.s}){
         display: none;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        margin-top: 0px;
     }
     @media screen and (min-width: ${props => props.theme.theme_vars.breakpoints.m}){
         display: inline-block;

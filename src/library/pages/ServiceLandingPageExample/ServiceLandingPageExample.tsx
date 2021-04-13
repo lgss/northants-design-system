@@ -1,6 +1,7 @@
 import React from 'react';
 import * as PageStructures from '../../structure/PageStructures';
-import Heading from '../../components/Heading/Heading';
+import HeadingWithIcon from '../../components/HeadingWithIcon/HeadingWithIcon';
+import SectionLinksMobileContents from '../../structure/SectionLinksMobileContents/SectionLinksMobileContents';
 
 export interface ServiceLandingPageExampleProps {
 
@@ -19,7 +20,22 @@ export const ServiceLandingPageExample: React.FC<ServiceLandingPageExampleProps>
         ]}
       />
       <PageStructures.PageMain>
-        <Heading level={1} text="Bin collection, recycling and waste" />
+        <HeadingWithIcon level={1} text="Bin collection, recycling and waste" icon="bins" />
+
+        <SectionLinksMobileContents sectionLinksArray={[
+          {
+            title: "Your bins and rubbish",
+            id: "your-bins-and-rubbish"
+          },
+          {
+            title: "Street cleaning",
+            id: "street-cleaning"
+          },
+          {
+            title: "Business, commercial and clinical waste",
+            id: "business-commercial-and-clinical-waste"
+          }
+        ]} />
         <PageStructures.SectionLinks 
           sectionTitle="Your bins and rubbish"
           sectionSlug="your-bins-and-rubbish"
@@ -145,7 +161,7 @@ export const ServiceLandingPageExampleOneSection: React.FC<ServiceLandingPageExa
         ]}
       />
       <PageStructures.PageMain>
-        <Heading level={1} text="Bin collection, recycling and waste" />
+        <HeadingWithIcon level={1} text="Bin collection, recycling and waste" icon="bins" />
         <p>Text and slices for the landing page go here.</p>
         <PageStructures.SectionLinks 
           displayTitle={false}

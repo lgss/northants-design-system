@@ -1,6 +1,10 @@
 
 export interface DropDownFilterProps {
   /**
+   * ID of the select
+   */
+   id?: string,
+  /**
    * What question are we asking?
    */
   label: string,

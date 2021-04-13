@@ -20,3 +20,24 @@ export const RightCol = styled.div`
   text-align: right;
 `
 
+export const Filters = styled.div`
+  margin-top: 20px;
+  grid-column-start: span 2;
+`
+
+export const FilterRow = styled.div`
+  padding: 5px;
+  border-bottom: 1px solid ${props => props.theme.theme_vars.colours.grey}80;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+`
+
+export const FilterTitle = styled.div`
+  font-weight: bold;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 80%;
+`

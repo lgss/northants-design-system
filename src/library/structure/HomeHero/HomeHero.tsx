@@ -1,17 +1,16 @@
 
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 
 import { HomeHeroProps } from "./HomeHero.types";
 import * as Styles from "./HomeHero.styles";
-import GDSColoured from "./assets/gds_coloured";
-import NorthColoured from "./assets/north_coloured";
-import WestColoured from "./assets/west_coloured";
+import GDSLogo from "../../components/logos/GDSLogo/logo";
+import NorthColoured from "../../components/logos/NorthColouredLogo/logo";
+import WestColoured from "../../components/logos/WestColouredLogo/logo";
 import { SkipToMainContent } from "../PageStructures";
 import LazyImage from "react-lazy-progressive-image";
 import Searchbar from "../Searchbar/Searchbar";
-import { linkTo } from "@storybook/addon-links";
 import PhaseBanner from "../PhaseBanner/PhaseBanner";
 
 /**
@@ -24,59 +23,64 @@ const HomeHero: React.FC<HomeHeroProps> = ({
   promotedLinksArray
 }) => {
   const themeContext = useContext(ThemeContext);
+  const [random, setRandom] = useState(999);
 
-  const random = (Math.floor(Math.random() * imagesArray.length));
+  useEffect(() => {
+    setRandom(Math.floor(Math.random() * imagesArray.length));
+  }, []);  
 
   return(
     <>
       <SkipToMainContent />
-      <PhaseBanner isHome />
-      <LazyImage
-          src={imagesArray[random].image1440x810}
-          placeholder={imagesArray[random].image144x81}
-          visibilitySensorProps={{
-              partialVisibility: true
-          }}
-      >
-        {src => 
-          <Styles.Container image={src}>
-            <Styles.StyledMaxWidthContainer>
-              <Styles.MainBox>
-                {topline &&
-                  <Styles.Topline>{topline}</Styles.Topline>
+      {/* <PhaseBanner isHome /> */}
+      <Styles.Wrapper>
+        <LazyImage
+            src={random !== 999 && imagesArray[random].image1440x810}
+            placeholder={random !== 999 && imagesArray[random].image144x81}
+            visibilitySensorProps={{
+                partialVisibility: true
+            }}
+        >
+          {src => 
+            <Styles.Container className={random !== 999 ? "loaded" : "loading"} image={src} aria-label={random !== 999 && imagesArray[random].imageAltText ? imagesArray[random].imageAltText : ""}>
+              <Styles.StyledMaxWidthContainer>
+                <Styles.MainBox>
+                  {topline &&
+                    <Styles.Topline>{topline}</Styles.Topline>
+                  }
+                  <Styles.HiddenH1>{themeContext.full_name} Council</Styles.HiddenH1>
+                  <Styles.LogoColoured className={themeContext.theme_vars.theme_name === "Memorial theme North" || themeContext.theme_vars.theme_name === "Memorial theme West" ? "black_logo" : ""}>
+                    {themeContext.cardinal_name === "north" ? <NorthColoured /> : (themeContext.cardinal_name === "west" ? <WestColoured /> : <GDSLogo />)}
+                  </Styles.LogoColoured>   
+                  {strapline && 
+                    <Styles.Strapline>{strapline}</Styles.Strapline>
+                  }
+                  <Searchbar 
+                    isLight
+                    isLarge 
+                    placeholder="Search the site"
+                    submitInfo={[{
+                      postTo: "/search",
+                      params: {
+                          type: "search"
+                      }
+                    }]}
+                  />
+                </Styles.MainBox>
+                {promotedLinksArray.length > 0 && 
+                  <Styles.PromotedLinks>
+                    {promotedLinksArray.map((link) =>
+                      <Styles.PromotedLink href={link.url} title={"Go to " + link.title}>
+                        <span>{link.title}</span>
+                      </Styles.PromotedLink>
+                    )}
+                  </Styles.PromotedLinks>
                 }
-                <Styles.HiddenH1>{themeContext.full_name} Council</Styles.HiddenH1>
-                <Styles.LogoColoured>
-                  {themeContext.cardinal_name === "north" ? <NorthColoured /> : (themeContext.cardinal_name === "west" ? <WestColoured /> : <GDSColoured />)}
-                </Styles.LogoColoured>   
-                {strapline && 
-                  <Styles.Strapline>{strapline}</Styles.Strapline>
-                }
-                <Searchbar 
-                  isLight
-                  isLarge 
-                  placeholder="Search the site"
-                  submitInfo={[{
-                    postTo: "/search",
-                    params: {
-                        type: "search"
-                    }
-                  }]}
-                />
-              </Styles.MainBox>
-              {promotedLinksArray.length > 0 && 
-                <Styles.PromotedLinks>
-                  {promotedLinksArray.map((link) =>
-                    <Styles.PromotedLink href={link.url} title={"Go to " + link.title}>
-                      <span>{link.title}</span>
-                    </Styles.PromotedLink>
-                  )}
-                </Styles.PromotedLinks>
-              }
-            </Styles.StyledMaxWidthContainer>
-          </Styles.Container>
-        }
-      </LazyImage>
+              </Styles.StyledMaxWidthContainer>
+            </Styles.Container>
+          }
+        </LazyImage>
+      </Styles.Wrapper>
     </>
 )};
 

@@ -5,11 +5,10 @@ import { ThemeContext } from 'styled-components';
 
 import { HeaderProps } from "./Header.types";
 import * as Styles from "./Header.styles";
-import GDSWhite from "./assets/gds_white";
-import WestWhite from "./assets/west_white";
-import GDSColoured from "./assets/gds_coloured";
-import NorthColoured from "./assets/north_coloured";
-import WestColoured from "./assets/west_coloured";
+import GDSLogo from "../../components/logos/GDSLogo/logo";
+import NorthColoured from "../../components/logos/NorthColouredLogo/logo";
+import WestColoured from "../../components/logos/WestColouredLogo/logo";
+import WestWhite from "../../components/logos/WestWhiteLogo/logo";
 import { SkipToMainContent } from "../PageStructures";
 import Searchbar from "../Searchbar/Searchbar";
 
@@ -37,12 +36,12 @@ const Header: React.FC<HeaderProps> = ({
           <Styles.LogoWrapper>
             <Styles.HomeLink href={homeLink} title="Go to the homepage" id="logo">
               {isHomepage ? 
-                <Styles.LogoColoured className={themeContext.theme_vars.theme_name === "London Bridge theme North" || themeContext.theme_vars.theme_name === "London Bridge theme West" ? "black_logo" : ""}>
-                  {themeContext.cardinal_name === "north" ? <NorthColoured /> : (themeContext.cardinal_name === "west" ? <WestColoured /> : <GDSColoured />)}
+                <Styles.LogoColoured className={themeContext.theme_vars.theme_name === "Memorial theme North" || themeContext.theme_vars.theme_name === "Memorial theme West" ? "black_logo" : ""}>
+                  {themeContext.cardinal_name === "north" ? <NorthColoured /> : (themeContext.cardinal_name === "west" ? <WestColoured /> : <GDSLogo />)}
                 </Styles.LogoColoured>   
                 :
-                <Styles.LogoWhite className={themeContext.theme_vars.theme_name === "London Bridge theme North" || themeContext.theme_vars.theme_name === "London Bridge theme West" ? "black_logo" : ""}>
-                  {themeContext.cardinal_name === "north" ? <NorthColoured /> : (themeContext.cardinal_name === "west" ? <WestWhite /> : <GDSWhite />)}
+                <Styles.LogoWhite className={themeContext.theme_vars.theme_name === "Memorial theme North" ? "black_logo" : ""}>
+                  {themeContext.cardinal_name === "north" ? <NorthColoured /> : (themeContext.cardinal_name === "west" ? <WestWhite /> : <GDSLogo />)}
                 </Styles.LogoWhite>
               }
             </Styles.HomeLink>

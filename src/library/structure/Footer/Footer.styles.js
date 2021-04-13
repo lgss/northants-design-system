@@ -10,11 +10,15 @@ export const StyledMaxWidthContainer = styled(MaxWidthContainer)`
 `
 export const FooterList = styled.ul`
   padding: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 25px;
   list-style-type: none;
 
   li:last-of-type {
       margin-bottom: 0;
+  }
+
+  @media screen and (min-width: ${props => props.theme.theme_vars.breakpoints.s}){
+    margin-bottom: 0px;
   }
 `
 export const FooterListItem = styled.li`
@@ -78,4 +82,21 @@ export const FooterLink = styled.a`
 `
 export const FooterCopy = styled.p`
   
+`
+export const FooterAlignment = styled.div`
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+`
+export const LogoWhite = styled.div`
+  svg {
+    width: 240px;
+    height: auto;
+    vertical-align: middle;
+  }
 `

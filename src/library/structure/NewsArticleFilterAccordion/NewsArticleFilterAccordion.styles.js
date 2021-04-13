@@ -48,12 +48,13 @@ const handleFullScreen = props => {
         props.theme.cardinal_name === "north" ?  (props.theme.theme_vars.colours.grey_light) : props.theme.theme_vars.colours.white};
       width: 100%;
       height: 100%;
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       z-index: 1;
       padding: 20px;
       box-sizing: border-box;
+      overflow: auto;
     `
   } 
 }
@@ -87,7 +88,7 @@ export const FilterHeader = styled.div`
 `
 
 
-export const FilterHeading = styled.div`
+export const FilterHeading = styled.h2`
   ${props => props.theme.theme_vars.h2}
 
 
@@ -95,3 +96,8 @@ export const FilterHeading = styled.div`
     ${props => props.theme.theme_vars.h3}
   }
 `
+
+// margin: 0;
+// padding: 0;
+// display: block;
+// overflow: hidden;

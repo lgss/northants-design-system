@@ -71,13 +71,11 @@ export const Container = styled.main`
 
     // TABLE STYLES
     .table-container {
-        @media only screen and (max-width: ${props => props.theme.theme_vars.breakpoints.m}){
-            max-width: 100%;
-            overflow: scroll;
+        max-width: 100%;
+        overflow-y: scroll;
 
-            table { 
-                max-width: none;
-            }
+        table { 
+            max-width: none;
         }
     }
     table { 
@@ -85,7 +83,7 @@ export const Container = styled.main`
         border-collapse: collapse; 
         margin-bottom: 25px;
         max-width: 100%;
-        overflow: scroll;
+        overflow-y: scroll;
 
         caption {
             text-align: left;

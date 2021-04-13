@@ -45,7 +45,6 @@ export const VisuallyHidden = styled.span`
 // AccordionSection
 
 export const Section = styled.div`
-  padding-top: 15px;
   padding-top: 0;
 `
 
@@ -56,7 +55,6 @@ export const SectionHeader = styled.div`
     border-top: 1px solid ${props => props.theme.theme_vars.colours.grey};
     color: ${props => props.theme.theme_vars.colours.action};
     cursor: pointer;
-    padding-top: 15px;
     padding-bottom: 15px;
 
     &:hover {
@@ -97,6 +95,7 @@ export const SectionButton = styled.button`
     text-align: left;
     cursor: pointer;
     -webkit-appearance: none;
+    text-decoration: underline;
 
     ${SectionButtonIsFilteredStyles}
 
@@ -125,6 +124,7 @@ export const SectionButton = styled.button`
 
     &:hover:not(:focus) {
         text-decoration: underline;
+        text-decoration-style: dotted;
     }
 
     &:hover {
@@ -132,8 +132,34 @@ export const SectionButton = styled.button`
     }
 `
 
-
-
+export const ReadMore = styled.div`
+    ${props => props.theme.linkStyles}
+    background: none;
+    border: none;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 0;
+    font-size: ${props => props.theme.theme_vars.fontSizes.extra_small}; 
+`
+export const ShowLessButton = styled.button`
+    ${props => props.theme.linkStyles}
+    background: none;
+    border: none;
+    margin-top: 15px;
+    padding: 0;
+    font-size: ${props => props.theme.theme_vars.fontSizes.extra_small}; 
+    cursor: pointer;
+    
+    &:hover {
+        ${props => props.theme.linkStylesHover}
+    }
+    &:focus {
+        ${props => props.theme.linkStylesFocus}
+    }
+    &:active {
+        ${props => props.theme.linkStylesActive}
+    }
+`
 
 
 export const AccordionIcon = styled.span`
@@ -183,17 +209,13 @@ export const SectionSummary = styled.div`
 
 export const SectionContent = styled.div`
     display: none;
-    padding-top: 15px;
+    padding-top: 5px;
     padding-bottom: 15px;
 
     h2, h3, h4, h5 {
         &:first-child {
             margin-top: 0;
         }
-    }
-
-    @media (min-width: 40.0625em) {
-        padding-top: 15px
     }
 
     @media (min-width: 40.0625em) {

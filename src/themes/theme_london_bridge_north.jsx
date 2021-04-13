@@ -1,10 +1,14 @@
 export const lb_vars_north = {
-    theme_name: "London Bridge theme North",
+    theme_name: "Memorial theme North",
     full_name: "North Northamptonshire",
     cardinal_name: "north",
-    council_link: "https://beta.northnorthants.gov.uk",
-    other_council_link: "https://beta.westnorthants.gov.uk",
+    council_link: "https://www.northnorthants.gov.uk",
+    other_council_link: "https://www.westnorthants.gov.uk",
     other_council_name: "West Northamptonshire",
+    other_council_action: "#386193",
+    twitter_link: "https://twitter.com/NNorthantsC",
+    linkedin_link: "https://www.linkedin.com/company/north-northamptonshire-council",
+    facebook_link: "https://www.facebook.com/NorthNorthants",
     breakpoints: {
         s: "550px",
         m: "768px", // tablets and larger
@@ -18,14 +22,16 @@ export const lb_vars_north = {
         grey: "#C6C6C6",
         grey_light: "#F5F5F5",
         white: "#FFFFFF",
-
+    
         action: "#000000",
         action_light: "#C6C6C6",
         action_dark: "#333333",
         positive: "#147DAD",
         negative: "#B73131",
+    
+        focus: "#E2CA76",
 
-        focus: "#E2CA76"
+        secondary: "#1A9DD9"
     },
     fontstack: "Arial, Helvetica, sans-serif",
     fontSizes: {

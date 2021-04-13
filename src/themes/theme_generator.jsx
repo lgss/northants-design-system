@@ -2,6 +2,7 @@ import { gds_vars } from "./theme_gds";
 import { north_vars } from "./theme_north";
 import { west_vars } from "./theme_west";
 import { lb_vars_north } from "./theme_london_bridge_north";
+import { lb_vars_west } from "./theme_london_bridge_west";
 import {css} from 'styled-components';
 
 
@@ -17,6 +18,7 @@ const generate_theme = (theme_vars) => {
             font-size: 16px;
             font-size: 1rem;
             line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
         
             @media screen and (min-width: ${theme_vars.breakpoints.m}){
                 font-size: 19px;
@@ -97,3 +99,4 @@ export const GDS_theme = generate_theme(gds_vars);
 export const west_theme = generate_theme(west_vars);
 export const north_theme = generate_theme(north_vars);
 export const lb_theme_north = generate_theme(lb_vars_north);
+export const lb_theme_west = generate_theme(lb_vars_west);
